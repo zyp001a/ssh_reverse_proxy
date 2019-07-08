@@ -4,7 +4,8 @@ A(no public ip address) -> B(public ip address) <- C(no public ip address)
 
 A <---ssh reverse proxy---> C
 
-## Usage:
+## Usage
+For A, run this cmd:
 ```
 ./ssh_open_remote_port B_user@B_ip_address
 ```
@@ -18,7 +19,7 @@ LOCAL_PORT=22 REMOTE_PORT=9999 ./ssh_open_remote_port B_user@B_ip_address
 ```
 this script use -R and -N option of ssh binary, other ssh options are supported.
 
-Now for C, use this to login A:
+Now for C, use this cmd to login A:
 ```
 ssh -p 9999 A_user@B_ip_address
 ```
