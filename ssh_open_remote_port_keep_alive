@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+addr=$@
+if [ -z $REMOTE_PORT ]; then REMOTE_PORT=9999; fi;
+if [ -z $LOCAL_PORT ]; then LOCAL_PORT=22; fi;
+LOCALDIR=`dirname "$0"`
+ABS_LOCALDIR=`realpath $LOCALDIR`
+cd $ABS_LOCALDIR
+cronline="* * * * * REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ &"
+if [ -z "`crontab -l | grep $@`" ]; then
+	(crontab -l; echo "$cronline" ) | crontab -
+	echo add task
+  echo use 'crontab -e' to see the result
+else
+  echo already add task
+fi
