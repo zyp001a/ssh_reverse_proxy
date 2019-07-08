@@ -6,8 +6,11 @@ LOCALDIR=`dirname "$0"`
 ABS_LOCALDIR=`realpath $LOCALDIR`
 cd $ABS_LOCALDIR
 cronline="* * * * * REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ &"
+
+REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ &
+
 if [ -z "`crontab -l | grep $@`" ]; then
-	(crontab -l; echo "$cronline" ) | crontab -
+	(crontab -l; echo "$cronline" ) | crontab -		
 	echo add task
   echo use 'crontab -e' to see the result
 else
