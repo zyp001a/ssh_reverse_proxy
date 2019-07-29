@@ -4,8 +4,9 @@ touch nopasswd_host_list
 if [ -z "`grep $addr nopasswd_host_list`" ]; then
   if [ ! -f ~/.ssh/id_rsa ]; then
 	  echo generate ~/.ssh/id_rsa
-	  yes y | ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa >/dev/null
+	  yes y | ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa >/dev/null	  
   fi
+  chmod 600 ~/.ssh/id_rsa
   cat ~/.ssh/id_rsa.pub | ssh $addr 'cat >> .authorized_keys; mkdir -p .ssh; mv .authorized_keys .ssh/authorized_keys'
   echo $addr >>nopasswd_host_list
 	echo success set no passwd
