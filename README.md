@@ -5,6 +5,12 @@ A(no public ip address) -> B(public ip address) <- C(no public ip address)
 A <---ssh reverse proxy---> C
 
 ## Usage
+First, run
+```
+./ssh_nopasswd B_user@B_ip_address
+```
+Then:
+
 For A, run this cmd:
 ```
 ./ssh_open_remote_port B_user@B_ip_address
