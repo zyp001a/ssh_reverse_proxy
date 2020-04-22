@@ -11,8 +11,9 @@ REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_po
 
 if [ -z "`crontab -l | grep $@`" ]; then
 	(crontab -l; echo "$cronline" ) | crontab -		
-	echo add task
+	echo adding task
   echo use 'crontab -e' to see the result
 else
-  echo already add task
+   echo "$cronline"
+  echo add task have been done
 fi
