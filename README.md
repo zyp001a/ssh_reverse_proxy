@@ -32,6 +32,7 @@ LOCAL_PORT=22 REMOTE_PORT=9999 ./ssh_open_remote_port B_user@B_ip_address
 ./ssh_open_remote_port -p 123 B_user@B_ip_address
 ```
 A ---LOCAL_PORT 22----> B <--ssh option(-p 123)----- C
+
 A <------------REMOTE_PORT 9999(through B)-----------C
 
 ## Ref
