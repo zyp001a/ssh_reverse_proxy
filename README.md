@@ -17,19 +17,22 @@ to add crontab line to keep the service open
 
 ## Result
 B opens a new public ssh port, default 9999;
+for C, use this cmd to login A:
+```
+ssh -p 9999 A_user@B_ip_address
+```
 
 ## Params
 sshd service of A must be open at the default 22 port or you need change environment variable as follows:
 ```
 LOCAL_PORT=22 REMOTE_PORT=9999 ./ssh_open_remote_port B_user@B_ip_address
 ```
-this script use -R and -N option of ssh binary, other ssh options are supported.
-
-## Test
-After all done, for C, use this cmd to login A:
+* this script use -R and -N option of ssh binary, other ssh options are supported, for example:
 ```
-ssh -p 9999 A_user@B_ip_address
+./ssh_open_remote_port -p 123 B_user@B_ip_address
 ```
+A ---LOCAL_PORT 22----> B <--ssh option(-p 123)----- C
+A <------------REMOTE_PORT 9999(through B)-----------C
 
 ## Ref
 * https://www.howtoforge.com/reverse-ssh-tunneling
