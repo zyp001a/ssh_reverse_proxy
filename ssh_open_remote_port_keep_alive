@@ -7,7 +7,7 @@ ABS_LOCALDIR=`realpath $LOCALDIR`
 cd $ABS_LOCALDIR
 cronline="* * * * * SSH='autossh -M 22200' REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ &"
 
-REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ 
+SSH= 'autossh -M 22200' REMOTE_PORT=$REMOTE_PORT LOCAL_PORT=$LOCAL_PORT $ABS_LOCALDIR/ssh_open_remote_port $@ 
 
 if [ -z "`crontab -l | grep $@`" ]; then
 	(crontab -l; echo "$cronline" ) | crontab -		
