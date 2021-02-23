@@ -7,11 +7,15 @@ LOCALDIR=`dirname "$0"`
 cd $LOCALDIR
 PIDF=/tmp/pid_${addr}_${LOCAL_PORT}_${REMOTE_PORT}
 SSHPID=`cat $PIDF`
+
+if [ $(curl -s -w %{http_code} www.baidu.com -o /dev/null) -ne "200" ]:
+	 echo "network not connected"
+	 exit
+fi
 if [ -z "$SSHPID" ] || [ -z "`ps -p $SSHPID | grep ssh`" ]; then
   ./ssh_nopasswd $@ 
 
   ssh $@ -t 'if [ -z "`grep "GatewayPorts yes" /etc/ssh/sshd_config`" ]; then echo change setting "GatewayPorts yes"; sudo chmod 777 /etc/ssh/sshd_config; sudo echo "" >>/etc/ssh/sshd_config; sudo echo "GatewayPorts yes" >>/etc/ssh/sshd_config; sudo chmod 644 /etc/ssh/sshd_config; if [ -f /etc/init.d/ssh* ]; then sudo /etc/init.d/ssh* restart; else sudo systemctl restart sshd; fi; else echo setting already changed; fi'
-
   ssh -R 0.0.0.0:$REMOTE_PORT:localhost:$LOCAL_PORT -N $@ &
   echo $! >$PIDF
 	echo ""
