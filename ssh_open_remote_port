@@ -10,7 +10,7 @@ PIDF=/tmp/pid_${addr}_${LOCAL_PORT}_${REMOTE_PORT}
 SSHPID=`cat $PIDF`
 if [ -z "$SSHPID" ] || [ -z "`ps -p $SSHPID | grep ssh`" ]; then
 #./ssh_nopasswd $@ 
-  if [ $(curl -s -w %{http_code} www.baidu.com -o /dev/null) -ne "200" ]:
+  if [ $(curl -s -w %{http_code} www.baidu.com -o /dev/null) -ne "200" ]; then
 	  echo "network not connected"
 	  exit
   fi
