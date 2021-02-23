@@ -7,10 +7,17 @@ A <---ssh reverse proxy---> C
 ## Usage
 clone this repo to A machine, and run
 ```
+./ssh_nopasswd B_user@B_ip_address
+```
+to make sure two server can be connected without password
+
+run
+```
 ./ssh_open_remote_port B_user@B_ip_address
 ```
 or
 ```
+apt install autossh #or install autossh it by yourself
 ./ssh_open_remote_port_keep_alive B_user@B_ip_address
 ```
 to add crontab line to keep the service open
