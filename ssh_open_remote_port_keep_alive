@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+PATH=/bin:/usr/bin
 addr=$@
 if [ -z $REMOTE_PORT ]; then REMOTE_PORT=9999; fi;
 if [ -z $LOCAL_PORT ]; then LOCAL_PORT=22; fi;
