@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 addr=$@
+addrstr=`echo "$addr" | sed 's/\-/\\\-/g'`
 touch nopasswd_host_list
-if [ -z "`grep $addr nopasswd_host_list`" ]; then
+if [ -z "`grep \"$addrstr\" nopasswd_host_list`" ]; then
   if [ ! -f ~/.ssh/id_rsa ]; then
 	  echo generate ~/.ssh/id_rsa
 	  yes y | ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa >/dev/null	  
