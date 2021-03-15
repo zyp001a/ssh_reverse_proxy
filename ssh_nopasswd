@@ -8,7 +8,7 @@ if [ -z "`grep \"$addrstr\" nopasswd_host_list`" ]; then
 	  yes y | ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa >/dev/null	  
   fi
   chmod 600 ~/.ssh/id_rsa
-  cat ~/.ssh/id_rsa.pub | ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $addr 'cat >> .authorized_keys; mkdir -p .ssh; cat .authorized_keys >> .ssh/authorized_keys'
+  cat ~/.ssh/id_rsa.pub | ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $addr 'cat >> .authorized_keys; mkdir -p .ssh; cat .authorized_keys >> .ssh/authorized_keys ;chmod 700 .ssh; chmod 600 .ssh/authorized_keys'
   echo $addr >>nopasswd_host_list
 	echo success set no passwd
 else
